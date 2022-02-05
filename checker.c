@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
+#include <string.h>
 #include "checker.h"
 
 void temperature_check(float temperature) {
