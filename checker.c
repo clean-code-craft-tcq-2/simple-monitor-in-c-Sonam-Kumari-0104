@@ -27,7 +27,7 @@ int chargeRate_check(float chargeRate) {
   return 1;
 }
 
-void printAlertMsg(string msg){
+void printAlertMsg(char msg[]){
   printf("%s out of range!\n", msg);
 }
 
