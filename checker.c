@@ -3,6 +3,10 @@
 #include <string.h>
 #include "checker.h"
 
+void printAlertMsg(char msg[]){
+  printf("%s out of range!\n", msg);
+}
+
 int temperature_check(float temperature) {
   if(temperature < TEMP_MINTHRESHOLD || temperature > TEMP_MAXTHRESHOLD) {
     printAlertMsg("Temperature");
@@ -27,9 +31,6 @@ int chargeRate_check(float chargeRate) {
   return 1;
 }
 
-void printAlertMsg(char msg[]){
-  printf("%s out of range!\n", msg);
-}
 
 int batteryIsOk(float temperature, float soc, float chargeRate) {
   int ret_value = 1;
