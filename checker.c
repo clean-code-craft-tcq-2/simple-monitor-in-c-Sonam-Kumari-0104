@@ -33,12 +33,12 @@ void printAlertMsg(char msg[]){
 
 int batteryIsOk(float temperature, float soc, float chargeRate) {
   int ret_value = 1;
-  ret_value = temperature_check(temperature)||SOC_check(soc)||chargeRate_check(chargeRate);
+  ret_value = temperature_check(temperature)&&SOC_check(soc)&&chargeRate_check(chargeRate);
   return ret_value;
 }
 
 int main() {
-  assert(!batteryIsOk(25, 70, 0.7));
+  assert(batteryIsOk(25, 70, 0.7));
   assert(!batteryIsOk(50, 85, 0));
   assert(!batteryIsOk(40, 85, 0));
 }
