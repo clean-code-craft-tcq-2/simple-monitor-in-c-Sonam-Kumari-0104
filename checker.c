@@ -38,7 +38,6 @@ int chargeRate_check(float chargeRate) {
   return chargeRateRangeStatus;
 }
 
-
 int batteryIsOk(float temperature, float soc, float chargeRate) {
   int ret_value = 1;
   ret_value = temperature_check(temperature)&&SOC_check(soc)&&chargeRate_check(chargeRate);
@@ -50,4 +49,12 @@ int main() {
   assert(!batteryIsOk(50, 85, 0));
   assert(!batteryIsOk(40, 85, 0));
   assert(!batteryIsOk(40, 60, 0.9));
+  assert(!temperature_check(-5));
+  assert(temperature_check(40));
+  assert(!temperature_check(60));
+  assert(SOC_check(50));
+  assert(!SOC_check(90.8));
+  assert(!chargeRate_check(-2));
+  assert(chargeRate_check(0.6));
+  assert(!chargeRate_check(1));
 }
