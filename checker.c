@@ -7,28 +7,35 @@ void printAlertMsg(char msg[]){
   printf("%s out of range!\n", msg);
 }
 
-int temperature_check(float temperature) {
-  if(temperature < TEMP_MINTHRESHOLD || temperature > TEMP_MAXTHRESHOLD) {
-    printAlertMsg("Temperature");
+int BMSValuesoutOfRangeCheck(float input, float minThreshold, float maxThreshold) {
+  if(input < minThreshold || input > maxThreshold){
     return 0;
   }
   return 1;
+}
+
+int temperature_check(float temperature) {
+  int tempRangeStatus = BMSValuesoutOfRangeCheck(temperature, TEMP_MINTHRESHOLD, TEMP_MAXTHRESHOLD);
+  if(!tempRangeStatus) {
+    printAlertMsg("Temperature");
+  }
+  return tempRangeStatus;
 }
 
 int SOC_check(float soc) {
-  if(soc < SOC_MINTHRESHOLD || soc > SOC_MAXTHRESHOLD) {
+  int socRangeStatus = BMSValuesoutOfRangeCheck(soc, SOC_MINTHRESHOLD, SOC_MAXTHRESHOLD);
+  if(!socRangeStatus) {
     printAlertMsg("State of Charge");
-    return 0;
   }
-  return 1;
+  return socRangeStatus;
 }
 
 int chargeRate_check(float chargeRate) {
-  if(chargeRate > CHARGERATE_MAXTHRESHOLD) {
+  int chargeRateRangeStatus = BMSValuesoutOfRangeCheck(chargeRate, CHARGERATE_MINTHRESHOLD, CHARGERATE_MAXTHRESHOLD);
+  if(!chargeRateRangeStatus) {
     printAlertMsg("Charge Rate");
-    return 0;
   }
-  return 1;
+  return chargeRateRangeStatus;
 }
 
 
